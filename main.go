@@ -24,8 +24,10 @@ import (
 
 	"github.com/codegangsta/cli"
 	"io/ioutil"
+	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 var (
@@ -61,6 +63,7 @@ func main() {
 		if len(serversArray) == 0 {
 			log.Fatal("Expected comma delimited list of servers via --servers")
 		}
+		rand.Seed(time.Now().UnixNano())
 		zk.SetServers(serversArray)
 
 		switch c.GlobalString("format") {
